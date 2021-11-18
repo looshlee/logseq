@@ -1,0 +1,42 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Manual-Release
+
+on:
+  workflow_call:
+    inputs:
+      tag-version:
+        description: "Release Tag Version"
+        required: true
+        type: string
+      git-ref:
+        description: "Release Git Ref"
+        required: true
+        type: string
+        default: "master"
+      is-draft:
+        description: 'Draft Release?'
+        required: true
+        type: boolean
+        default: "true"
+      is-pre-release:
+        description: 'Pre Release?'
+        required: true
+        type: boolean
+        default: "true"
+      release-channel:
+        description: 'Release Channel'
+        required: true
+        type: string
+        default: "(Beta Testing)"
+
+
+jobs:
+  call-build-desktop-release-workflow:
+    use: andelf/logseq/.github/workflows/build-desktop-release.yml@master
+    whith:
+      tag-version: "${{ github.event.inputs.tag-version }}"
+      git-ref: "${{ github.event.inputs.git-ref }}"
+      is-draft: "${{ github.event.inputs.is-draft }}"
+      is-pre-release: "${{ github.event.inputs.is-pre-release }}"
+      release-channel: "${{ github.event.inputs.release-channel }}"
