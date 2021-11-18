@@ -31,7 +31,7 @@ on:
 
 jobs:
   call-build-desktop-release-workflow:
-    use: andelf/logseq/.github/workflows/build-desktop-release.yml@master
+    uses: andelf/logseq/.github/workflows/build-desktop-release.yml@master
     whith:
       tag-version: "${{ github.event.inputs.tag-version }}"
       git-ref: "${{ github.event.inputs.git-ref }}"
