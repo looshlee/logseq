@@ -17,6 +17,7 @@ jobs:
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
   release:
+    needs: [ prepare ]
     uses: andelf/logseq/.github/workflows/build-desktop-release.yml@master
     with:
       tag-version: nightly-"${{ jobs.prepare.steps.date.outputs.date }}"
