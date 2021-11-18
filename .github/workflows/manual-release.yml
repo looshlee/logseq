@@ -2,32 +2,7 @@ name: Manual-Release
 
 on:
   workflow_dispatch:
-    inputs:
-      tag-version:
-        description: "Release Tag Version"
-        required: true
-        type: string
-      git-ref:
-        description: "Release Git Ref"
-        required: true
-        type: string
-        default: "master"
-      is-draft:
-        description: 'Draft Release?'
-        required: true
-        type: boolean
-        default: true
-      is-pre-release:
-        description: 'Pre Release?'
-        required: true
-        type: boolean
-        default: true
-      release-channel:
-        description: 'Release Channel'
-        required: true
-        type: string
-        default: "(Beta Testing)"
-
+ 
 
 jobs:
   release:
