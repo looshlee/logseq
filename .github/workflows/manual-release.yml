@@ -30,9 +30,9 @@ on:
 
 
 jobs:
-  call-build-desktop-release-workflow:
+  release:
     uses: andelf/logseq/.github/workflows/build-desktop-release.yml@master
-    whith:
+    with:
       tag-version: "${{ github.event.inputs.tag-version }}"
       git-ref: "${{ github.event.inputs.git-ref }}"
       is-draft: "${{ github.event.inputs.is-draft }}"
