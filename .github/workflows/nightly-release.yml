@@ -1,0 +1,26 @@
+name: Nightly-Release
+
+on:
+  schedule:
+    - cron: '0 18 * * MON-FRI' # run at 6 PM UTC, monday-friday daily
+  repository_dispatch:
+    types: [force-release]
+  workflow_dispatch:
+
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
+  release:
+    uses: andelf/logseq/.github/workflows/build-desktop-release.yml@master
+    with:
+      tag-version: nightly-"${{ jobs.prepare.steps.date.outputs.date }}"
+      git-ref: "master"
+      is-draft: true
+      is-pre-release: true
+      release-channel: Nightly-"${{ jobs.prepare.steps.date.outputs.date }}"
