@@ -32,4 +32,10 @@ on:
 jobs:
   release:
     uses: andelf/logseq/.github/workflows/build-desktop-release.yml@master
+    with:
+      tag-version: "${{ github.event.inputs.tag-version }}"
+      git-ref: "${{ github.event.inputs.git-ref }}"
+      is-draft: "${{ github.event.inputs.is-draft }}"
+      is-pre-release: "${{ github.event.inputs.is-pre-release }}"
+      release-channel: "${{ github.event.inputs.release-channel }}"
 
