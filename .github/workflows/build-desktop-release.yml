@@ -3,23 +3,33 @@
 name: Build-Desktop-Release
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       tag-version:
         description: "Release Tag Version"
         required: true
+        type: string
       git-ref:
         description: "Release Git Ref"
         required: true
+        type: string
         default: "master"
       is-draft:
-        description: 'Draft Release? '
+        description: 'Draft Release?'
         required: true
+        type: boolean
         default: "true"
       is-pre-release:
         description: 'Pre Release?'
         required: true
+        type: boolean
         default: "true"
+      release-channel:
+        description: 'Release Channel'
+        required: true
+        type: string
+        default: "(Beta Testing)"
+
 
 jobs:
   compile-cljs:
@@ -368,7 +378,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.event.inputs.tag-version }}
-          release_name: Desktop APP ${{ github.event.inputs.tag-version }} (Beta Testing)
+          release_name: Desktop APP ${{ github.event.inputs.tag-version }} {{ github.event.inputs.release-channel }}
           draft: ${{ github.event.inputs.is-draft }}
           prerelease: ${{ github.event.inputs.is-pre-release }}
 
