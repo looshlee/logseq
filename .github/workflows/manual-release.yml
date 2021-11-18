@@ -16,12 +16,12 @@ on:
         description: 'Draft Release?'
         required: true
         type: boolean
-        default: "true"
+        default: true
       is-pre-release:
         description: 'Pre Release?'
         required: true
         type: boolean
-        default: "true"
+        default: true
       release-channel:
         description: 'Release Channel'
         required: true
