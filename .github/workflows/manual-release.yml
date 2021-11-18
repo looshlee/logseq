@@ -1,9 +1,7 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Manual-Release
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       tag-version:
         description: "Release Tag Version"
